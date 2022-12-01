@@ -17,6 +17,7 @@ const Home: NextPage = () => {
       setAddress(address)
       const key = new web3.PublicKey(address)
       const connection = new web3.Connection(web3.clusterApiUrl('devnet'))
+
       connection.getBalance(key).then(balance => {
         setBalance(balance / web3.LAMPORTS_PER_SOL)
       })
@@ -24,6 +25,7 @@ const Home: NextPage = () => {
       connection.getAccountInfo(key).then(info => {
         setIsExecutable(info?.executable ?? false)
       })
+
     } catch (error) {
       setAddress('')
       setBalance(0)

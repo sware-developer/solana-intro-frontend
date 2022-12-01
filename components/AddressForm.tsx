@@ -1,16 +1,15 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from '../styles/AddressForm.module.css'
 
-function AddressForm(props: { handler: (address: string, balance: number) => void }) {
+function AddressForm(props: { handler: (address: string) => void }) {
 
   const [values, setValues] = useState({
     address: '',
-    balance: 0,
   });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.handler(values.address, values.balance)
+    props.handler(values.address)
   };
 
   const handleAddressInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -20,15 +19,6 @@ function AddressForm(props: { handler: (address: string, balance: number) => voi
       address: event.target.value,
     }));
   };
-
-  const handleBalanceInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      balance: parseFloat(event.target.value)
-    }));
-  };
-
 
   return (
     <div className={styles.Form}>
@@ -41,16 +31,6 @@ function AddressForm(props: { handler: (address: string, balance: number) => voi
           name="firstName"
           value={values.address}
           onChange={handleAddressInputChange}
-        />
-        <br />
-        <input
-          id="balance"
-          className={styles.formField}
-          type="number"
-          placeholder="Balance, 0"
-          name="balance"
-          value={values.balance}
-          onChange={handleBalanceInputChange}
         />
         <br />
         <button type="submit" className={styles.formButton}>
