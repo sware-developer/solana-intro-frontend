@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import AddressForm from '../components/AddressForm'
 import * as web3 from '@solana/web3.js'
+import BalanceForm from '../components/BalanceForm'
 
 const Home: NextPage = () => {
   const [balance, setBalance] = useState(0)
@@ -28,6 +29,9 @@ const Home: NextPage = () => {
       setBalance(0)
       alert(error)
     }
+  }
+
+  const balanceSubmittedHandeler = (address: string) => {
   }
 
   return (
